@@ -1,0 +1,631 @@
+/* =============================================================================
+   globals.css — Tailwind v4 (CSS-first configuration)
+   Savings & Cashflow Tracker — Editorial Finance Design System
+   ============================================================================= */
+
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Semantic CSS Variables — Light / Dark Theme Tokens
+   --------------------------------------------------------------------------- */
+:root {
+  /* Core palette */
+  --app-background: #F6FFEA;
+  --highlight: #FFDE96;
+  --primary: #FA855A;
+  --danger: #C93638;
+  --digital: #62C4DA;
+  --savings: var(--digital);
+
+  /* Neutrals */
+  --ink: #0F1A0A;
+  --ink-secondary: #3D4A37;
+  --ink-muted: #6B7766;
+  --ink-faint: #9CA897;
+
+  /* Legacy aliases */
+  --text-base: #0F1A0A;
+  --text-muted: #6B7766;
+  --text-inverse: #FFFFFF;
+
+  /* Surfaces */
+  --surface: #FFFFFF;
+  --surface-raised: #F0FAE0;
+  --surface-warm: #FFF8F0;
+  --surface-overlay: rgba(15, 26, 10, 0.6);
+  --border: #D9EDCB;
+  --border-strong: #B8D9A8;
+  --border-subtle: #E8F2DC;
+
+  /* Semantic financial accents */
+  --amount-income-color: #1A7A4C;
+  --badge-income-bg: rgba(26, 122, 76, 0.08);
+  --badge-income-fg: #1A7A4C;
+  --badge-expense-bg: rgba(201, 54, 56, 0.08);
+  --badge-expense-fg: #C93638;
+  --badge-contribution-bg: rgba(98, 196, 218, 0.1);
+  --badge-contribution-fg: #2A8FA8;
+  --badge-withdrawal-bg: rgba(255, 222, 150, 0.3);
+  --badge-withdrawal-fg: #8A6A10;
+  --badge-cancelled-bg: rgba(15, 26, 10, 0.05);
+  --badge-cancelled-fg: #6B7766;
+  --badge-reversal-bg: rgba(250, 133, 90, 0.1);
+  --badge-reversal-fg: #FA855A;
+
+  /* Component specific */
+  --btn-primary-hover-bg: #E8763E;
+  --btn-ghost-hover-bg: rgba(15, 26, 10, 0.04);
+  --btn-danger-border: rgba(201, 54, 56, 0.2);
+  --btn-danger-hover-bg: rgba(201, 54, 56, 0.06);
+  --tx-row-hover-bg: rgba(15, 26, 10, 0.02);
+  --card-shadow: 0 4px 16px rgba(15, 26, 10, 0.04);
+  --drawer-shadow: 0 -8px 32px rgba(15, 26, 10, 0.08);
+}
+
+.dark {
+  /* Core palette adapted for dark finance dashboard with required palette:
+     #1D1E23: Deepest application background
+     #2E2B26: Primary dark surface
+     #57463A: Secondary / elevated surface
+     #33363F: Border / muted structural color
+     #656772: Secondary text / muted UI */
+  --app-background: #1D1E23;
+  --highlight: #FFDE96;
+  --primary: #FA855A;
+  --danger: #E64A4C;
+  --digital: #62C4DA;
+  --savings: var(--digital);
+
+  /* Neutrals: high contrast readable text & hierarchy */
+  --ink: #F5F5F3;
+  --ink-secondary: #D4D4D0;
+  --ink-muted: #656772;
+  --ink-faint: #4E505B;
+
+  /* Legacy aliases */
+  --text-base: #F5F5F3;
+  --text-muted: #656772;
+  --text-inverse: #1D1E23;
+
+  /* Surfaces: semantic hierarchy from required palette */
+  --surface: #2E2B26;
+  --surface-raised: #57463A;
+  --surface-warm: #39342F;
+  --surface-overlay: rgba(15, 15, 18, 0.78);
+  --border: #33363F;
+  --border-strong: #454955;
+  --border-subtle: #292B32;
+
+  /* Semantic financial accents tuned for warm charcoal surfaces */
+  --amount-income-color: #34D399;
+  --badge-income-bg: rgba(52, 211, 153, 0.16);
+  --badge-income-fg: #34D399;
+  --badge-expense-bg: rgba(230, 74, 76, 0.16);
+  --badge-expense-fg: #FF6B6D;
+  --badge-contribution-bg: rgba(98, 196, 218, 0.16);
+  --badge-contribution-fg: #62C4DA;
+  --badge-withdrawal-bg: rgba(255, 222, 150, 0.2);
+  --badge-withdrawal-fg: #FFDE96;
+  --badge-cancelled-bg: rgba(101, 103, 114, 0.18);
+  --badge-cancelled-fg: #989AA6;
+  --badge-reversal-bg: rgba(250, 133, 90, 0.16);
+  --badge-reversal-fg: #FA855A;
+
+  /* Component specific */
+  --btn-primary-hover-bg: #E8763E;
+  --btn-ghost-hover-bg: rgba(245, 245, 243, 0.06);
+  --btn-danger-border: rgba(230, 74, 76, 0.35);
+  --btn-danger-hover-bg: rgba(230, 74, 76, 0.12);
+  --tx-row-hover-bg: rgba(245, 245, 243, 0.04);
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --drawer-shadow: 0 -8px 32px rgba(0, 0, 0, 0.6);
+}
+
+/* ---------------------------------------------------------------------------
+   @theme — Semantic color tokens
+   Editorial finance palette: restrained, intentional, number-forward.
+   --------------------------------------------------------------------------- */
+@theme {
+  /* Core palette */
+  --color-app-background: var(--app-background);
+  --color-highlight: var(--highlight);
+  --color-primary: var(--primary);
+  --color-danger: var(--danger);
+  --color-digital: var(--digital);
+  --color-savings: var(--savings);
+
+  /* Neutrals */
+  --color-ink: var(--ink);
+  --color-ink-secondary: var(--ink-secondary);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+
+  /* Legacy aliases */
+  --color-text-base: var(--text-base);
+  --color-text-muted: var(--text-muted);
+  --color-text-inverse: var(--text-inverse);
+
+  /* Surfaces */
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-warm: var(--surface-warm);
+  --color-surface-overlay: var(--surface-overlay);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-border-subtle: var(--border-subtle);
+
+  /* Typography */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* Spacing — safe-area */
+  --spacing-safe-top: env(safe-area-inset-top, 0px);
+  --spacing-safe-right: env(safe-area-inset-right, 0px);
+  --spacing-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --spacing-safe-left: env(safe-area-inset-left, 0px);
+}
+
+
+/* ---------------------------------------------------------------------------
+   Motion tokens (CSS custom properties for consistent animation)
+   --------------------------------------------------------------------------- */
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+  --duration-entrance: 600ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-normal: 0ms;
+    --duration-slow: 0ms;
+    --duration-entrance: 0ms;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Global reset & base
+   --------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-app-background);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  min-height: 100dvh;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+/* ---------------------------------------------------------------------------
+   iOS Safe Area Utilities
+   --------------------------------------------------------------------------- */
+.safe-top { padding-top: env(safe-area-inset-top, 0px); }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
+.safe-x {
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+.safe-all {
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-left: env(safe-area-inset-left, 0px);
+}
+.mb-safe { margin-bottom: env(safe-area-inset-bottom, 0px); }
+.fixed-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  z-index: 50;
+}
+
+/* ---------------------------------------------------------------------------
+   Touch & interaction defaults
+   --------------------------------------------------------------------------- */
+button,
+[role="button"],
+a,
+input[type="checkbox"],
+input[type="radio"],
+select {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+a, button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Typography system
+   --------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+
+p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Financial number display — numbers are hero typography */
+.amount-display {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+
+.amount-positive { color: var(--color-ink); }
+.amount-negative { color: var(--color-danger); }
+.amount-income { color: var(--amount-income-color); }
+
+/* Micro label — uppercase tracking for section labels */
+.micro-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-ink-muted);
+}
+
+/* ---------------------------------------------------------------------------
+   Card system — intentional elevation
+   --------------------------------------------------------------------------- */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.card-interactive {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 16px;
+  padding: 20px;
+  transition:
+    border-color var(--duration-normal) var(--ease-out-expo),
+    box-shadow var(--duration-normal) var(--ease-out-expo),
+    transform var(--duration-fast) var(--ease-out-expo);
+  cursor: pointer;
+}
+
+.card-interactive:hover {
+  border-color: var(--color-border);
+  box-shadow: var(--card-shadow);
+  transform: translateY(-1px);
+}
+
+.card-interactive:active {
+  transform: translateY(0) scale(0.995);
+}
+
+/* Accent card variants */
+.card-primary {
+  background: var(--color-primary);
+  border-color: transparent;
+  color: white;
+}
+
+.card-highlight {
+  background: var(--color-highlight);
+  border-color: transparent;
+  color: var(--color-ink);
+}
+
+/* ---------------------------------------------------------------------------
+   Button system
+   --------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  border-radius: 10px;
+  padding: 10px 16px;
+  border: none;
+  cursor: pointer;
+  transition:
+    background var(--duration-fast) var(--ease-out-expo),
+    transform var(--duration-fast) var(--ease-out-expo),
+    box-shadow var(--duration-normal) var(--ease-out-expo);
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+}
+.btn-primary:hover {
+  background: var(--btn-primary-hover-bg);
+  box-shadow: 0 2px 8px rgba(250, 133, 90, 0.25);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-ink);
+  border: 1px solid var(--color-border);
+}
+.btn-secondary:hover {
+  background: var(--color-surface-raised);
+  border-color: var(--color-border-strong);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-ink-secondary);
+}
+.btn-ghost:hover {
+  background: var(--btn-ghost-hover-bg);
+}
+
+.btn-danger {
+  background: transparent;
+  color: var(--color-danger);
+  border: 1px solid var(--btn-danger-border);
+}
+.btn-danger:hover {
+  background: var(--btn-danger-hover-bg);
+}
+
+.btn-sm {
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  min-height: 36px;
+}
+
+/* ---------------------------------------------------------------------------
+   Input system
+   --------------------------------------------------------------------------- */
+.input {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  transition: border-color var(--duration-fast) var(--ease-out-expo),
+              box-shadow var(--duration-fast) var(--ease-out-expo);
+  min-height: 44px;
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--color-ink-faint);
+}
+
+.input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(250, 133, 90, 0.12);
+}
+
+.input-error {
+  border-color: var(--color-danger);
+}
+.input-error:focus {
+  box-shadow: 0 0 0 3px rgba(201, 54, 56, 0.12);
+}
+
+/* ---------------------------------------------------------------------------
+   Progress bar
+   --------------------------------------------------------------------------- */
+.progress-track {
+  width: 100%;
+  height: 6px;
+  background: var(--color-border-subtle);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--color-primary);
+  transition: width var(--duration-slow) var(--ease-out-expo);
+}
+
+.progress-fill-savings {
+  background: var(--color-digital);
+}
+
+/* ---------------------------------------------------------------------------
+   Badge system
+   --------------------------------------------------------------------------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.badge-income {
+  background: var(--badge-income-bg);
+  color: var(--badge-income-fg);
+}
+.badge-expense {
+  background: var(--badge-expense-bg);
+  color: var(--badge-expense-fg);
+}
+.badge-contribution {
+  background: var(--badge-contribution-bg);
+  color: var(--badge-contribution-fg);
+}
+.badge-withdrawal {
+  background: var(--badge-withdrawal-bg);
+  color: var(--badge-withdrawal-fg);
+}
+.badge-cancelled {
+  background: var(--badge-cancelled-bg);
+  color: var(--badge-cancelled-fg);
+  text-decoration: line-through;
+}
+.badge-reversal {
+  background: var(--badge-reversal-bg);
+  color: var(--badge-reversal-fg);
+}
+
+/* ---------------------------------------------------------------------------
+   Skeleton loading
+   --------------------------------------------------------------------------- */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-border-subtle) 25%,
+    var(--color-surface-raised) 50%,
+    var(--color-border-subtle) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+/* ---------------------------------------------------------------------------
+   Overlay / Backdrop
+   --------------------------------------------------------------------------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--color-surface-overlay);
+  z-index: 40;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* ---------------------------------------------------------------------------
+   Transaction row
+   --------------------------------------------------------------------------- */
+.tx-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-border-subtle);
+  transition: background var(--duration-fast) var(--ease-out-expo);
+  cursor: pointer;
+}
+
+.tx-row:last-child {
+  border-bottom: none;
+}
+
+.tx-row:hover {
+  background: var(--tx-row-hover-bg);
+  margin: 0 -12px;
+  padding: 12px;
+  border-radius: 10px;
+}
+
+/* ---------------------------------------------------------------------------
+   Entrance animations
+   --------------------------------------------------------------------------- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: fadeInUp var(--duration-entrance) var(--ease-out-expo) both;
+}
+
+.animate-in-delay-1 { animation-delay: 60ms; }
+.animate-in-delay-2 { animation-delay: 120ms; }
+.animate-in-delay-3 { animation-delay: 180ms; }
+.animate-in-delay-4 { animation-delay: 240ms; }
+.animate-in-delay-5 { animation-delay: 300ms; }
+
+/* ---------------------------------------------------------------------------
+   Scrollbar — hide on mobile
+   --------------------------------------------------------------------------- */
+@media (pointer: coarse) {
+  ::-webkit-scrollbar { display: none; }
+  * { scrollbar-width: none; }
+}
+
+/* ---------------------------------------------------------------------------
+   Drawer / Modal panel
+   --------------------------------------------------------------------------- */
+.drawer-panel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 90vh;
+  background: var(--color-surface);
+  border-radius: 20px 20px 0 0;
+  padding: 24px 20px;
+  padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  z-index: 50;
+  overflow-y: auto;
+  box-shadow: var(--drawer-shadow);
+}
+
+@media (min-width: 640px) {
+  .drawer-panel {
+    max-width: 480px;
+    margin: 0 auto;
+    bottom: 24px;
+    border-radius: 20px;
+  }
+}
+
