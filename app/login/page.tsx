@@ -4,6 +4,7 @@ import { useState, Suspense } from 'react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
+import { isSafeRedirect } from '@/lib/auth/redirect'
 
 import { Wallet, AlertTriangle } from 'lucide-react'
 import { ThemeToggle } from '@/lib/theme/ThemeToggle'
@@ -11,7 +12,8 @@ import { ThemeToggle } from '@/lib/theme/ThemeToggle'
 function LoginForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const redirectTo = searchParams.get('redirectTo') || '/'
+  const rawRedirect = searchParams.get('redirectTo') || '/'
+  const redirectTo = isSafeRedirect(rawRedirect) ? rawRedirect : '/'
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -50,7 +52,7 @@ function LoginForm() {
       }
 
       // Success -> navigate to target destination or home
-      router.push(redirectTo.startsWith('/') ? redirectTo : '/')
+      router.push(redirectTo)
       router.refresh()
     } catch (err: unknown) {
       setErrorMsg(err instanceof Error ? err.message : 'Terjadi kesalahan saat masuk.')

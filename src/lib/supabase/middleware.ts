@@ -1,6 +1,7 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 import type { Database } from '@/types/database'
+import { isSafeRedirect } from '@/lib/auth/redirect'
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
@@ -62,18 +63,18 @@ export async function updateSession(request: NextRequest) {
   if (!user && !isPublicRoute) {
     const url = request.nextUrl.clone()
     url.pathname = '/login'
-    url.searchParams.set('redirectTo', pathname)
+    // Only append redirectTo when the user was heading somewhere other than /
+    if (pathname !== '/') {
+      url.searchParams.set('redirectTo', pathname)
+    }
     return NextResponse.redirect(url)
   }
 
   // If user is authenticated and trying to access an auth route (login/signup)
   if (user && isAuthRoute) {
     const url = request.nextUrl.clone()
-    let redirectTo = request.nextUrl.searchParams.get('redirectTo') || '/'
-    if (!redirectTo.startsWith('/') || redirectTo.startsWith('/login') || redirectTo.startsWith('/signup')) {
-      redirectTo = '/'
-    }
-    url.pathname = redirectTo
+    const rawRedirect = request.nextUrl.searchParams.get('redirectTo') || '/'
+    url.pathname = isSafeRedirect(rawRedirect) ? rawRedirect : '/'
     url.searchParams.delete('redirectTo')
     return NextResponse.redirect(url)
   }
