@@ -14,10 +14,15 @@ function LoginForm() {
   const searchParams = useSearchParams()
   const rawRedirect = searchParams.get('redirectTo') || '/'
   const redirectTo = isSafeRedirect(rawRedirect) ? rawRedirect : '/'
+  const callbackError = searchParams.get('error')
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [errorMsg, setErrorMsg] = useState<string | null>(null)
+  const [errorMsg, setErrorMsg] = useState<string | null>(
+    callbackError === 'auth_callback_failed'
+      ? 'Verifikasi email tidak valid atau sudah kedaluwarsa. Silakan masuk kembali.'
+      : null
+  )
   const [isLoading, setIsLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

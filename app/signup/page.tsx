@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
+import { getAuthCallbackUrl } from '@/lib/auth/redirect'
 
 import { Wallet, CheckCircle2, AlertTriangle } from 'lucide-react'
 import { ThemeToggle } from '@/lib/theme/ThemeToggle'
@@ -46,6 +47,7 @@ export default function SignupPage() {
         email: email.trim(),
         password,
         options: {
+          emailRedirectTo: getAuthCallbackUrl(),
           data: {
             display_name: displayName.trim() || undefined,
           },

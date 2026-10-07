@@ -54,6 +54,7 @@ export async function updateSession(request: NextRequest) {
   // Public assets or public callback routes
   const isPublicRoute =
     isAuthRoute ||
+    pathname.startsWith('/auth/callback') ||
     pathname.startsWith('/api') ||
     pathname.startsWith('/icons') ||
     pathname === '/manifest.webmanifest' ||

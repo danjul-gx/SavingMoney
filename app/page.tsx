@@ -127,9 +127,9 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-dvh flex flex-col bg-app-background safe-all">
+    <div className="min-h-dvh flex flex-col bg-app-background safe-x pb-safe">
       {/* Top Application Shell Header */}
-      <header className="sticky top-0 z-40 w-full border-b border-border/80 bg-surface/90 backdrop-blur-md">
+      <header className="sticky top-0 z-40 w-full border-b border-border/80 bg-surface/90 backdrop-blur-md pt-safe">
         <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6">
           {/* Brand */}
           <div className="flex items-center gap-3">
